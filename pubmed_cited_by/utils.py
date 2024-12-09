@@ -21,7 +21,7 @@ def save_excel(data, outfile='output.xlsx'):
     ws = wb.active
     ws.append(['PMID', 'Count', 'Cited By PMIDs'])
     for item in data:
-        row = [item['pmid'], item['count'], item['cited_by_pmids']]
+        row = [item['pmid'], item['count'], ','.join(item['cited_by_pmids'])]
         ws.append(row)
     
     wb.save(outfile)
@@ -29,7 +29,7 @@ def save_excel(data, outfile='output.xlsx'):
 
 def save_csv(data, outfile='output.csv', sep=','):
     with open(outfile, 'w') as out:
-        out.write(sep.join(['PMID', 'Count', 'Cited By PMIDs']))
+        out.write(sep.join(['PMID', 'Count', 'Cited By PMIDs']) + '\n')
         for item in data:
             row = [str(item['pmid']), str(item['count']), '|'.join(item['cited_by_pmids'])]
             out.write(sep.join(row) + '\n')

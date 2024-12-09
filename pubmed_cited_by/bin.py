@@ -10,9 +10,22 @@ from pubmed_cited_by.core import PubmedCitedBy
 CONTEXT_SETTINGS = dict(help_option_names=['-?', '-h', '--help'])
 
 
-__epilog__ = '''
+__epilog__ = click.style('''
+\n\b
+expamles:
+    {prog} --help
+\b
+    {prog}  1 2 3
+    {prog}  pmid.list
+\b
+    {prog}  1 2 3 -o output.xlsx
+    {prog}  1 2 3 -o output.csv
+    {prog}  1 2 3 -o output.tsv
+    {prog}  1 2 3 -o output.json
+    {prog}  1 2 3 -o output.jl
+                         
 contact: {author} <{author_email}>
-'''.format(**version_info)
+'''.format(**version_info), fg='yellow')
 
 @click.command(
     name=version_info['prog'],
@@ -44,6 +57,7 @@ def cli(pmids, output):
             utils.save_json(data, output)
         elif output.suffix == '.jl':
             utils.save_jsonlines(data, output)
+
         loguru.logger.info(f'save file to: {output}')
 
 

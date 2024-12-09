@@ -13,8 +13,16 @@ class PubmedCitedBy(object):
 
     Usage:
     >>> from pubmed_cited_by.core import PubmedCitedBy
-    >>> pc = PubmedCitedBy()
-    >>> data = pc.get_cited_by_data(36708705)
+    >>> 
+    >>> pcb = PubmedCitedBy()
+    >>> 
+    >>> result = pcb.get_cited_by_data(1)
+    >>> print(result)
+    >>> 
+    >>> pmids = [1, 2, 3]
+    >>> data = pcb.get_cited_by(pmids)
+    >>> for item in data:
+    >>>     print(item)
     """
 
     def __init__(self, ncbi_api_key=None):
@@ -47,7 +55,7 @@ class PubmedCitedBy(object):
                 data = resp.json()
                 break
             except Exception as e:
-                loguru.logger.exception(f'failed: {e}')
+                # loguru.logger.exception(f'failed: {e}')
                 time.sleep(3)
 
         cited_by_pmids = []
