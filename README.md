@@ -8,7 +8,10 @@ python3 -m pip install pubmed-cited-by
 
 ## Usage
 
-### set API_KEY in environment variable
+> set API_KEY in environment variable [***recommend***]
+
+> see more: https://account.ncbi.nlm.nih.gov/settings/#api-key
+
 ```bash
 echo NCBI_API_KEY=<your_api_key> >> ~/.bashrc
 ```
