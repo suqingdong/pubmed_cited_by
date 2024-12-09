@@ -1,2 +1,2 @@
 include requirements.txt
-include pubmed_citations/version.json
+include pubmed_cited_by/version.json
